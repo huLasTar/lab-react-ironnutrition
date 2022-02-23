@@ -23,7 +23,6 @@ function AddFoodForm(props) {
       servings: getServings,
     };
 
-    console.log('Submitted: ', newFood);
     props.AddFoodForm(newFood);
 
     // Reset the state

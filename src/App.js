@@ -2,9 +2,10 @@
 import './App.css';
 import { useState } from 'react';
 import foods from './foods.json';
-import { Card, Row, Col, Divider, Button } from 'antd';
+import { Row, Col, Button } from 'antd';
 import FoodBox from './components/FoodBox';
 import AddFoodForm from './components/AddFoodForm';
+import Search from './components/Search';
 
 function App() {
   const [getFoods, setFoods] = useState(foods);
@@ -17,12 +18,17 @@ function App() {
     const updatedFoods = [newFood, ...getFoods];
     const updatedFoodsData = [newFood, ...getFoodsData];
 
-    console.log(newFood);
-
     setFoods(updatedFoods);
     setFoodsData(updatedFoodsData);
+  };
 
-    console.log(updatedFoods);
+  // Iteration 5:
+  const searchFood = (searchTerm) => {
+    const searchResult = getFoodsData.filter((food) => {
+      return food.name.toLowerCase().includes(searchTerm);
+    });
+
+    setFoods(searchResult);
   };
 
   // Iteration 6:
@@ -63,6 +69,11 @@ function App() {
           </Col>
         </Row>
       )}
+      <Row>
+        <Col span={12} offset={6}>
+          <Search handleSearch={searchFood} />
+        </Col>
+      </Row>
       <Row gutter={16}>
         {getNoFoods && <h4>There are no foods in the list.</h4>}
         {getFoods.map((food, key) => {

@@ -4,13 +4,16 @@ import { useState } from 'react';
 
 // Iteration 5:
 function Search(props) {
-  return (
-    <>
-      <Divider>Search</Divider>
+  const handleSearchInput = (e) => {
+    e.preventDefault();
+    props.handleSearch(e.target.value.toLowerCase());
+  };
 
-      <label>Search</label>
-      <Input value={undefined} type="text" onChange={() => {}} />
-    </>
+  return (
+    <form>
+      <Divider>Search Food</Divider>
+      <Input type="text" name="searchInput" onChange={handleSearchInput} />
+    </form>
   );
 }
 

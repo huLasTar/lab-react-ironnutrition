@@ -6,8 +6,8 @@ import { useState } from 'react';
 function AddFoodForm(props) {
   const [getName, setName] = useState('');
   const [getImage, setImage] = useState('');
-  const [getCalories, setCalories] = useState('');
-  const [getServings, setServings] = useState('');
+  const [getCalories, setCalories] = useState(0);
+  const [getServings, setServings] = useState(0);
 
   const handleNameInput = (e) => setName(e.target.value);
   const handleImageInput = (e) => setImage(e.target.value);
@@ -24,8 +24,8 @@ function AddFoodForm(props) {
     // Reset the state
     setName('');
     setImage('');
-    setCalories('');
-    setServings('');
+    setCalories(0);
+    setServings(0);
   };
 
   return (

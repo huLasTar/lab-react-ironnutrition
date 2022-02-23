@@ -9,7 +9,10 @@ import AddFoodForm from './components/AddFoodForm';
 function App() {
   const [getFoods, setFoods] = useState(foods);
   const [getFoodsData, setFoodsData] = useState(foods);
+  const [showAddFoodForm, setShowAddFoodForm] = useState(false);
+  const [getNoFoods, setNoFoods] = useState(false);
 
+  // Iteration 4:
   const addNewFood = (newFood) => {
     const updatedFoods = [...getFoods, newFood];
     const updatedFoodsData = [...getFoodsData, newFood];
@@ -27,11 +30,14 @@ function App() {
     });
 
     setFoods(filteredFoods);
+
+    // Iteration 8:
+    if (filteredFoods.length < 1) {
+      setNoFoods(!getNoFoods);
+    }
   };
 
   // Iteration 7:
-  const [showAddFoodForm, setShowAddFoodForm] = useState(false);
-
   const toggleAddFoodForm = () => {
     setShowAddFoodForm(!showAddFoodForm);
   };
@@ -54,14 +60,9 @@ function App() {
         </Row>
       )}
       <Row gutter={16}>
-        {getFoods.map((food) => {
-          return (
-            <FoodBox
-              key={Math.random()}
-              food={food}
-              deletedFood={deleteAFood}
-            />
-          );
+        {getNoFoods && <h4>There are no foods in the list.</h4>}
+        {getFoods.map((food, key) => {
+          return <FoodBox key={key} food={food} deletedFood={deleteAFood} />;
         })}
       </Row>
     </div>

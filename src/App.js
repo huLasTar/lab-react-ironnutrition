@@ -2,7 +2,7 @@
 import './App.css';
 import { useState } from 'react';
 import foods from './foods.json';
-import { Card, Row, Col, Divider, Input, Button } from 'antd';
+import { Card, Row, Col, Divider, Button } from 'antd';
 import FoodBox from './components/FoodBox';
 import AddFoodForm from './components/AddFoodForm';
 
@@ -18,8 +18,19 @@ function App() {
     setFoodsData(updatedFoodsData);
   };
 
+  // Iteration 6:
+  const deleteAFood = (selected) => {
+    const copiedFoods = [...getFoods];
+
+    const filteredFoods = copiedFoods.filter(function (food) {
+      return food.name !== selected.name;
+    });
+
+    setFoods(filteredFoods);
+  };
+
   // Iteration 7:
-  const [showAddFoodForm, setShowAddFoodForm] = useState(true);
+  const [showAddFoodForm, setShowAddFoodForm] = useState(false);
 
   const toggleAddFoodForm = () => {
     setShowAddFoodForm(!showAddFoodForm);
@@ -27,9 +38,13 @@ function App() {
 
   return (
     <div className="App">
-      <button onClick={toggleAddFoodForm}>
-        {showAddFoodForm ? 'Hide' : 'Show'}
-      </button>
+      <Row>
+        <Col span={12} offset={6}>
+          <Button onClick={toggleAddFoodForm}>
+            {showAddFoodForm ? 'Cancel' : 'Add New Food'}
+          </Button>
+        </Col>
+      </Row>
 
       {showAddFoodForm && (
         <Row>
@@ -39,8 +54,14 @@ function App() {
         </Row>
       )}
       <Row gutter={16}>
-        {getFoods.map((food, key) => {
-          return <FoodBox key={key} food={food} />;
+        {getFoods.map((food) => {
+          return (
+            <FoodBox
+              key={Math.random()}
+              food={food}
+              deletedFood={deleteAFood}
+            />
+          );
         })}
       </Row>
     </div>

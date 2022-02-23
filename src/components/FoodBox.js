@@ -1,9 +1,14 @@
 import React from 'react';
 import { Card, Col, Button } from 'antd';
 
-// Iteration 2
+// Iteration 2:
 function FoodBox(props) {
   const { food } = props;
+
+  // Iteration 6:
+  const deleteFood = (singleFood) => {
+    props.deletedFood(singleFood);
+  };
 
   return (
     <Col className="gutter-row" span={3}>
@@ -14,7 +19,10 @@ function FoodBox(props) {
         <p>
           <b>Total Calories: {food.calories * food.servings}</b> kcal
         </p>
-        <Button type="primary"> Delete </Button>
+        <Button type="primary" onClick={() => deleteFood(props.food)}>
+          {' '}
+          Delete{' '}
+        </Button>
       </Card>
     </Col>
   );

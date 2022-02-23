@@ -1,5 +1,5 @@
 import React from 'react';
-import { Divider, Input } from 'antd';
+import { Divider, Input, Button } from 'antd';
 import { useState } from 'react';
 
 // Iteration 4
@@ -29,7 +29,7 @@ function AddFoodForm(props) {
   };
 
   return (
-    <form className="AddFoodForm" onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <Divider>Add Food Entry</Divider>
 
       <label>Name</label>

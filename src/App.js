@@ -2,7 +2,7 @@
 import './App.css';
 import { useState } from 'react';
 import foods from './foods.json';
-import { Row, Col, Button } from 'antd';
+import { Divider, Row, Col, Button } from 'antd';
 import FoodBox from './components/FoodBox';
 import AddFoodForm from './components/AddFoodForm';
 import Search from './components/Search';
@@ -54,6 +54,7 @@ function App() {
 
   return (
     <div className="App">
+      <Divider>Add New Food</Divider>
       <Row>
         <Col span={12} offset={6}>
           <Button onClick={toggleAddFoodForm}>
@@ -74,8 +75,9 @@ function App() {
           <Search handleSearch={searchFood} />
         </Col>
       </Row>
+      <Divider>List of Foods</Divider>
       <Row gutter={16}>
-        {getNoFoods && <h4>There are no foods in the list.</h4>}
+        {getNoFoods && <Divider>There are no foods in the list.</Divider>}
         {getFoods.map((food, key) => {
           return <FoodBox key={key} food={food} deletedFood={deleteAFood} />;
         })}

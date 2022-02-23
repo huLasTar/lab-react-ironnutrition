@@ -16,7 +16,12 @@ function AddFoodForm(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newFood = { getName, getImage, getCalories, getServings };
+    const newFood = {
+      name: getName,
+      image: getImage,
+      calories: getCalories,
+      servings: getServings,
+    };
 
     console.log('Submitted: ', newFood);
     props.AddFoodForm(newFood);
@@ -44,7 +49,9 @@ function AddFoodForm(props) {
       <label>Servings</label>
       <Input value={getServings} type="number" onChange={handleServingsInput} />
 
-      <button type="submit">Create</button>
+      <Button type="primary" htmlType="submit">
+        Create
+      </Button>
     </form>
   );
 }

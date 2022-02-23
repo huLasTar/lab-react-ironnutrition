@@ -14,11 +14,15 @@ function App() {
 
   // Iteration 4:
   const addNewFood = (newFood) => {
-    const updatedFoods = [...getFoods, newFood];
-    const updatedFoodsData = [...getFoodsData, newFood];
+    const updatedFoods = [newFood, ...getFoods];
+    const updatedFoodsData = [newFood, ...getFoodsData];
+
+    console.log(newFood);
 
     setFoods(updatedFoods);
     setFoodsData(updatedFoodsData);
+
+    console.log(updatedFoods);
   };
 
   // Iteration 6:

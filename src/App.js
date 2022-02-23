@@ -10,23 +10,11 @@ function App() {
 
   return (
     <div className="App">
-      <FoodBox
-        food={{
-          name: 'Orange',
-          calories: 85,
-          image: 'https://i.imgur.com/abKGOcv.jpg',
-          servings: 1,
-        }}
-      />
-
-      {getFoods.map((food) => {
-        return (
-          <div>
-            <p> {food.name} </p>
-            <img src={food.image} alt={food.name} width={200} />
-          </div>
-        );
-      })}
+      <Row gutter={16}>
+        {getFoods.map((food) => {
+          return <FoodBox food={food} />;
+        })}
+      </Row>
     </div>
   );
 }

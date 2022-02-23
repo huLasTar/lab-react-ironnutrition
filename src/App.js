@@ -18,13 +18,26 @@ function App() {
     setFoodsData(updatedFoodsData);
   };
 
+  // Iteration 7:
+  const [showAddFoodForm, setShowAddFoodForm] = useState(true);
+
+  const toggleAddFoodForm = () => {
+    setShowAddFoodForm(!showAddFoodForm);
+  };
+
   return (
     <div className="App">
-      <Row>
-        <Col span={12} offset={6}>
-          <AddFoodForm AddFoodForm={addNewFood} />
-        </Col>
-      </Row>
+      <button onClick={toggleAddFoodForm}>
+        {showAddFoodForm ? 'Hide' : 'Show'}
+      </button>
+
+      {showAddFoodForm && (
+        <Row>
+          <Col span={12} offset={6}>
+            <AddFoodForm AddFoodForm={addNewFood} />
+          </Col>
+        </Row>
+      )}
       <Row gutter={16}>
         {getFoods.map((food, key) => {
           return <FoodBox key={key} food={food} />;
